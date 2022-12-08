@@ -1,5 +1,6 @@
-import { text } from 'stream/consumers';
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+//import { text } from 'stream/consumers';
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany } from 'typeorm';
+import { ProductImag } from './product-image.entity';
 
 @Entity()
 export class Product {
@@ -45,6 +46,15 @@ export class Product {
         default:[]
     })
     tags:string[]
+
+    @OneToMany(
+        ()=>ProductImag,
+        productImage=>productImage.product,
+        {cascade:true,//para si se elimina un producto esto ayuda a eliminar la imagenes relacionadas al producto
+        eager:true // cada vez que utilizamos un metodo find nos carga las relaciones, no asi con queryResult
+        }
+        )
+    images?:ProductImag[]
 
     @BeforeInsert()
     checkSlugInsert() {

@@ -32,12 +32,12 @@ npm run start:dev
 ```
 8. Contruir  la base de datos con la semilla.
 ```
-http://localhost:3000/api/v2/seed   GET
+http://localhost:3000/api/seed   GET
 ```
 
 
 ## Stack used :  
-* MongoDB
+* Postgress
 
 # Production Build
 1. Crear el archivo ```.env.prod```.
